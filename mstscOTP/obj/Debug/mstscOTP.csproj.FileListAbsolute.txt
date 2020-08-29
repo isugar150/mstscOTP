@@ -1,0 +1,11 @@
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\bin\Debug\mstscOTP.exe.config
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\bin\Debug\mstscOTP.exe
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\bin\Debug\mstscOTP.pdb
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.csprojAssemblyReference.cache
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Form1.resources
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Properties.Resources.resources
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.csproj.GenerateResource.cache
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.csproj.CoreCompileInputs.cache
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.exe
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.pdb
+C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Forms.EnterOTP.resources
