@@ -74,7 +74,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(338, 163);
+            this.panel1.Location = new System.Drawing.Point(101, 75);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(313, 149);
             this.panel1.TabIndex = 3;
@@ -91,16 +91,17 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.panel1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(989, 583);
+            this.panel2.Size = new System.Drawing.Size(515, 371);
             this.panel2.TabIndex = 4;
             // 
             // EnterOTP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 583);
+            this.ClientSize = new System.Drawing.Size(515, 371);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EnterOTP";

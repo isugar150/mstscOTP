@@ -23,8 +23,11 @@ namespace mstscOTP
         private iniProperties IniProperties = new iniProperties();
         private bool remoteSessionYn = false;
         private byte[] key = null;
+        private string desktopID = "";
 
         EventLog logListener = new EventLog("Security");
+
+        int sessionCnt = 0;
         #endregion
 
         #region 공유변수
@@ -44,7 +47,9 @@ namespace mstscOTP
                 {
                     pairs.Load("./mstscOTP.ini");
                     IniProperties.OTPKey = pairs["mstscOTP"]["OTPKey"].ToString2();
+                    IniProperties.desktopID = pairs["mstscOTP"]["desktopID"].ToString2();
                     key = Encoding.UTF8.GetBytes(IniProperties.OTPKey);
+                    desktopID = IniProperties.desktopID;
                 }
             }
             catch (Exception) { }
@@ -61,12 +66,14 @@ namespace mstscOTP
             while (!this.IsDisposed)
             {
                 remoteSessionYn = SystemInformation.TerminalServerSession;
+                sessionCnt = getSession(3389);
+                Console.WriteLine("연결된 세션 수: " + sessionCnt);
 
                 Console.WriteLine("원격세션 연결 상태: " + remoteSessionYn);
                 Console.WriteLine("세션 Yn: " + isSession);
-                if (remoteSessionYn && !isSession)
+                if (remoteSessionYn && !isSession && sessionCnt > 0)
                 {
-                    using (var form = new EnterOTP(IniProperties.desktopID, key))
+                    using (var form = new EnterOTP(desktopID, key))
                     {
                         form.ShowDialog();
                     }
@@ -79,16 +86,30 @@ namespace mstscOTP
             };
         }
 
+        private int getSession(int number)
+        {
+            var ip = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties();
+
+            var cnt = 0;
+
+            foreach (var tcp in ip.GetActiveTcpConnections()) // alternative: ip.GetActiveTcpListeners()
+            {
+                if (tcp.LocalEndPoint.Port == number || tcp.RemoteEndPoint.Port == number)
+                {
+                    ++cnt;
+                }
+            }
+            return cnt;
+        }
+
         #region 버튼 이벤트
 
         private void button1_Click(object sender, EventArgs e)
         {
-            remoteSessionYn = true;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            remoteSessionYn = false;
+            using (var form = new EnterOTP(desktopID, key))
+            {
+                form.ShowDialog();
+            }
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e)
@@ -102,6 +123,7 @@ namespace mstscOTP
             String otpURI = new GoogleAuthenticator().GenerateQRCode(Environment.MachineName, key, 150, 150);
             webBrowser1.Navigate(otpURI);
             textBox1.Enabled = true;
+            button4.Enabled = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -111,6 +133,7 @@ namespace mstscOTP
             {
                 textBox1.Enabled = false;
                 IniProperties.OTPKey = Encoding.UTF8.GetString(key);
+                IniProperties.desktopID = Environment.MachineName;
 
                 IniFile setting = new IniFile();
 
@@ -123,6 +146,7 @@ namespace mstscOTP
             {
                 MessageBox.Show(this, "유효성 검사에 실패하였습니다. QR코드 재생성 후 다시시도하세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            button4.Enabled = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -131,5 +155,9 @@ namespace mstscOTP
             MessageBox.Show(this, genPin, "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
     }
 }
