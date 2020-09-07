@@ -34,6 +34,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.끝내기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +47,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,10 +86,39 @@
             // 
             // notifyIcon1
             // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "mstscOTP";
             this.notifyIcon1.Visible = true;
-            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.설정ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.끝내기ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(111, 54);
+            // 
+            // 설정ToolStripMenuItem
+            // 
+            this.설정ToolStripMenuItem.Name = "설정ToolStripMenuItem";
+            this.설정ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.설정ToolStripMenuItem.Text = "설정";
+            this.설정ToolStripMenuItem.Click += new System.EventHandler(this.설정ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(107, 6);
+            // 
+            // 끝내기ToolStripMenuItem
+            // 
+            this.끝내기ToolStripMenuItem.Name = "끝내기ToolStripMenuItem";
+            this.끝내기ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.끝내기ToolStripMenuItem.Text = "끝내기";
+            this.끝내기ToolStripMenuItem.Click += new System.EventHandler(this.끝내기ToolStripMenuItem_Click);
             // 
             // groupBox2
             // 
@@ -179,6 +213,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -201,6 +236,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 설정ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 끝내기ToolStripMenuItem;
     }
 }
 

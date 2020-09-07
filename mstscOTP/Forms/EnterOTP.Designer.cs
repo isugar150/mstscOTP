@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -40,11 +41,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(41, 116);
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(41, 119);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(139, 21);
+            this.textBox1.Size = new System.Drawing.Size(139, 14);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // button1
             // 
@@ -69,7 +73,9 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox1);
@@ -78,6 +84,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(313, 149);
             this.panel1.TabIndex = 3;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.OrangeRed;
+            this.panel3.ForeColor = System.Drawing.Color.Orange;
+            this.panel3.Location = new System.Drawing.Point(39, 135);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(143, 1);
+            this.panel3.TabIndex = 4;
             // 
             // label2
             // 
@@ -90,6 +105,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -105,6 +121,7 @@
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EnterOTP";
+            this.ShowInTaskbar = false;
             this.Text = "EnterOTP";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EnterOTP_FormClosing);
@@ -124,5 +141,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

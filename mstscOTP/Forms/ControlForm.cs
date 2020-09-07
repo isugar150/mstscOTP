@@ -54,7 +54,6 @@ namespace mstscOTP
             }
             catch (Exception) { }
 
-            //this.Visible = false;
             Thread t1 = new Thread(() =>
                 isTerminalConnection()
             );
@@ -77,8 +76,7 @@ namespace mstscOTP
                     {
                         form.ShowDialog();
                     }
-                }
-                else if (!remoteSessionYn && isSession)
+                } else if(sessionCnt == 0 || !remoteSessionYn)
                 {
                     isSession = false;
                 }
@@ -106,15 +104,14 @@ namespace mstscOTP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var form = new EnterOTP(desktopID, key))
+            if (!key.Equals("") || key != null)
             {
-                form.ShowDialog();
+                using (var form = new EnterOTP(desktopID, key))
+                {
+                    form.ShowDialog();
+                }
             }
-        }
-
-        private void notifyIcon1_Click(object sender, EventArgs e)
-        {
-            this.Visible = true;
+            else MessageBox.Show(this, "OTP 등록 후 사용 가능합니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -158,6 +155,35 @@ namespace mstscOTP
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = true;
+            this.Visible = false;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.Visible == false)
+            {
+                this.Visible = true;
+                this.Activate();
+            }
+            else
+                this.Visible = false;
+        }
+
+        private void 설정ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = true;
+            this.Activate();
+        }
+
+        private void 끝내기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("프로그램을 종료하시겠습니까?", "경고", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                this.Dispose();
+                Application.ExitThread();
+                Environment.Exit(0);
+            }
         }
     }
 }
