@@ -1,0 +1,11 @@
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\bin\Release\mstscOTP.exe.config
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\bin\Release\mstscOTP.exe
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\bin\Release\mstscOTP.pdb
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.Form1.resources
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.Forms.EnterOTP.resources
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.Properties.Resources.resources
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.csproj.GenerateResource.cache
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.csproj.CoreCompileInputs.cache
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.exe
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.pdb
+C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Release\mstscOTP.csprojAssemblyReference.cache

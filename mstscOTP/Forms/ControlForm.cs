@@ -20,6 +20,7 @@ namespace mstscOTP
     public partial class Form1 : Form
     {
         #region 전역변수
+        private bool enableDispose = false;
         private iniProperties IniProperties = new iniProperties();
         private bool remoteSessionYn = false;
         private byte[] key = null;
@@ -62,6 +63,7 @@ namespace mstscOTP
 
         private void isTerminalConnection()
         {
+            int preSessionCnt = 0;
             while (!this.IsDisposed)
             {
                 remoteSessionYn = SystemInformation.TerminalServerSession;
@@ -70,16 +72,23 @@ namespace mstscOTP
 
                 Console.WriteLine("원격세션 연결 상태: " + remoteSessionYn);
                 Console.WriteLine("세션 Yn: " + isSession);
-                if (remoteSessionYn && !isSession && sessionCnt > 0)
+                if (remoteSessionYn && !isSession)
                 {
                     using (var form = new EnterOTP(desktopID, key))
                     {
                         form.ShowDialog();
+
+                        enableDispose = true;
+                        this.Dispose();
+                        Application.ExitThread();
+                        Environment.Exit(0);
                     }
-                } else if(sessionCnt == 0 || !remoteSessionYn)
+                } else if(sessionCnt != preSessionCnt)
                 {
                     isSession = false;
                 }
+
+                preSessionCnt = sessionCnt;
                 Thread.Sleep(1000);
             };
         }
@@ -155,8 +164,11 @@ namespace mstscOTP
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.Visible = false;
+            if (!enableDispose)
+            {
+                e.Cancel = true;
+                this.Visible = false;
+            }
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -180,6 +192,7 @@ namespace mstscOTP
         {
             if(MessageBox.Show("프로그램을 종료하시겠습니까?", "경고", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                enableDispose = true;
                 this.Dispose();
                 Application.ExitThread();
                 Environment.Exit(0);

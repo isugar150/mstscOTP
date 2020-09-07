@@ -12,7 +12,6 @@ C:\Users\JMKIM\source\repos\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Forms.EnterOTP.
 C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\bin\Debug\mstscOTP.exe.config
 C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\bin\Debug\mstscOTP.exe
 C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\bin\Debug\mstscOTP.pdb
-C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Debug\mstscOTP.csprojAssemblyReference.cache
 C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Form1.resources
 C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Forms.EnterOTP.resources
 C:\Users\JMKIM\Documents\GitHub\mstscOTP\mstscOTP\obj\Debug\mstscOTP.Properties.Resources.resources

@@ -20,7 +20,7 @@ namespace mstscOTP.Forms
         private String desktopID = null;
         private byte[] key = null;
 
-        [System.Runtime.InteropServices.DllImport("Kernel32.Dll", EntryPoint = "Wow64EnableWow64FsRedirection")]
+        [DllImport("Kernel32.Dll", EntryPoint = "Wow64EnableWow64FsRedirection")]
         public static extern bool EnableWow64FSRedirection(bool enable);
 
         public EnterOTP(String desktopID, byte[] key)
@@ -43,44 +43,39 @@ namespace mstscOTP.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             EnableWow64FSRedirection(false);
-
-            //테스트 코드
-            Form1.isSession = true;
-            enableDispose = true;
-            this.Dispose();
-
-            /*String genPin = new GoogleAuthenticator().GeneratePin(key);
+            this.Activate();
+            String genPin = new GoogleAuthenticator().GeneratePin(key);
             if (textBox1.Text.Equals(genPin))
             {
                 Form1.isSession = true;
                 enableDispose = true;
                 this.Dispose();
+
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.UseShellExecute = false;
+                    psi.FileName = @"cmd.exe";
+                    psi.RedirectStandardOutput = true;
+                    psi.Arguments = " /C \"START explorer.exe\" ";
+                    using (Process proc = Process.Start(psi))
+                    {
+                        using (System.IO.StreamReader reader = proc.StandardOutput)
+                        {
+                            //string result = reader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                EnableWow64FSRedirection(true);
             }
             else
             {
                 MessageBox.Show(this, "OTP가 일치하지 않습니다. 확인 후 다시시도하세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-
-            try
-            {
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.UseShellExecute = false;
-                psi.FileName = @"cmd.exe";
-                psi.RedirectStandardOutput = true;
-                psi.Arguments = " /C \"START explorer.exe\" ";
-                using (Process proc = Process.Start(psi))
-                {
-                    using (System.IO.StreamReader reader = proc.StandardOutput)
-                    {
-                        //string result = reader.ReadToEnd();
-                    }
-                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            EnableWow64FSRedirection(true);
         }
 
         private void EnterOTP_FormClosing(object sender, FormClosingEventArgs e)
