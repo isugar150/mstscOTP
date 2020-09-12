@@ -44,6 +44,7 @@ namespace mstscOTP.Forms
         {
             EnableWow64FSRedirection(false);
             this.Activate();
+            this.Activate();
             String genPin = new GoogleAuthenticator().GeneratePin(key);
             if (textBox1.Text.Equals(genPin))
             {
@@ -66,14 +67,15 @@ namespace mstscOTP.Forms
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e1)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(this, e1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 EnableWow64FSRedirection(true);
             }
             else
             {
+                textBox1.Text = "";
                 MessageBox.Show(this, "OTP가 일치하지 않습니다. 확인 후 다시시도하세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -98,6 +100,16 @@ namespace mstscOTP.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox1.Text = Clipboard.GetText();
+                button1.PerformClick();
+            }
+            catch (Exception e1) { MessageBox.Show(this, e1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
     }
 }

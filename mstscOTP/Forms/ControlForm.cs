@@ -58,6 +58,7 @@ namespace mstscOTP
             Thread t1 = new Thread(() =>
                 isTerminalConnection()
             );
+            t1.SetApartmentState(ApartmentState.STA);
             t1.Start();
         }
 
