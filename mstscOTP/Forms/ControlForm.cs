@@ -26,9 +26,7 @@ namespace mstscOTP
         private byte[] key = null;
         private string desktopID = "";
 
-        EventLog logListener = new EventLog("Security");
-
-        int sessionCnt = 0;
+        //int sessionCnt = 0;
         #endregion
 
         #region 공유변수
@@ -64,37 +62,43 @@ namespace mstscOTP
 
         private void isTerminalConnection()
         {
-            int preSessionCnt = 0;
-            while (!this.IsDisposed)
+            try
             {
-                remoteSessionYn = SystemInformation.TerminalServerSession;
-                sessionCnt = getSession(3389);
-                Console.WriteLine("연결된 세션 수: " + sessionCnt);
-
-                Console.WriteLine("원격세션 연결 상태: " + remoteSessionYn);
-                Console.WriteLine("세션 Yn: " + isSession);
-                if (remoteSessionYn && !isSession)
+                //int preSessionCnt = 0;
+                while (!this.IsDisposed)
                 {
-                    using (var form = new EnterOTP(desktopID, key))
+                    remoteSessionYn = SystemInformation.TerminalServerSession;
+                    //sessionCnt = getSession(3389);
+                    //Console.WriteLine("연결된 세션 수: " + sessionCnt);
+
+                    Console.WriteLine("원격세션 연결 상태: " + remoteSessionYn);
+                    Console.WriteLine("세션 Yn: " + isSession);
+                    if (remoteSessionYn && !isSession)
                     {
-                        form.ShowDialog();
+                        using (var form = new EnterOTP(desktopID, key))
+                        {
+                            form.ShowDialog();
 
-                        enableDispose = true;
-                        this.Dispose();
-                        Application.ExitThread();
-                        Environment.Exit(0);
+                            enableDispose = true;
+                            Application.ExitThread();
+                            Environment.Exit(0);
+                        }
                     }
-                } else if(sessionCnt != preSessionCnt)
-                {
-                    isSession = false;
-                }
+                    /* else if (sessionCnt != preSessionCnt)
+                    {
+                        isSession = false;
+                    } */
 
-                preSessionCnt = sessionCnt;
-                Thread.Sleep(1000);
-            };
+                    //preSessionCnt = sessionCnt;
+                    Thread.Sleep(1000);
+                };
+            } catch(Exception e1)
+            {
+                MessageBox.Show(this, e1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private int getSession(int number)
+        /* private int getSession(int number)
         {
             var ip = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties();
 
@@ -108,7 +112,7 @@ namespace mstscOTP
                 }
             }
             return cnt;
-        }
+        } */
 
         #region 버튼 이벤트
 
@@ -194,7 +198,6 @@ namespace mstscOTP
             if(MessageBox.Show("프로그램을 종료하시겠습니까?", "경고", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 enableDispose = true;
-                this.Dispose();
                 Application.ExitThread();
                 Environment.Exit(0);
             }
